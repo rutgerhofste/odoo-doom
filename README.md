@@ -1,6 +1,6 @@
 # odoo-doom
 
-Doom in Odoo 19. One menu item, the shareware episode, running as WebAssembly in the browser.
+An unofficial, non-commercial fan project: Doom in Odoo 19. One menu item, the shareware episode, running as WebAssembly in the browser.
 
 ![Doom in Odoo](pan_doom/static/description/screenshot.png)
 
@@ -18,12 +18,23 @@ No sound: the engine build has no audio.
 draws each frame on a canvas and passes key presses from the canvas to the game, so Odoo's own
 shortcuts stay out of the way.
 
-## Credits and licenses
+## Legal
 
-- Doom engine: id Software, GPL-2.0 or later.
-- WebAssembly build: [diekmann/wasm-fizzbuzz](https://github.com/diekmann/wasm-fizzbuzz),
-  taken from the [wasm-doom](https://www.npmjs.com/package/wasm-doom) npm package (v1.2.0).
-- Shareware episode (`doom1.wad`, inside the wasm): id Software, under the Doom shareware terms.
-- The module itself: Pantalytics B.V., GPL-2.0 or later.
+**This is an unofficial, non-commercial fan project.** It is a hobby experiment: it is not for
+sale, is not a product or service, and never will be. It has no connection to, and is not
+endorsed by, id Software, ZeniMax Media, Bethesda Softworks, Microsoft or Odoo S.A.
 
-Doom is a trademark of id Software. This project has no connection to id Software or Bethesda.
+- **No rights claimed.** DOOM and every name, logo, image, sound and level from the game belong
+  to their owners (id Software / ZeniMax Media). DOOM is their trademark and is used here only
+  to say what this module runs. Odoo is a trademark of Odoo S.A.
+- **Engine:** the DOOM source code that id Software released under the GNU GPL, version 2 or
+  later. The full license text is in [LICENSE](LICENSE). The WebAssembly build and its source
+  come from [diekmann/wasm-fizzbuzz](https://github.com/diekmann/wasm-fizzbuzz/tree/gh-pages/doom),
+  taken unchanged from the [wasm-doom](https://www.npmjs.com/package/wasm-doom) npm package (v1.2.0).
+- **Game data:** the unmodified shareware episode (`doom1.wad`, built into the wasm), which id
+  Software allows to be passed on for free. It may not be sold or bundled with anything that is.
+  The full game is not included.
+- **Our own code** (the Odoo module around the engine) is GPL-2.0 or later as well.
+- **No warranty.** Provided as is, without any warranty, as the GPL says.
+- **Takedown.** If you hold rights to anything in here and want it gone, open an issue and it
+  will be taken down.
