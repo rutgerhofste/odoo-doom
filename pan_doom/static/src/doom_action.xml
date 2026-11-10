@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="pan_doom.DoomAction">
+        <div class="o_pan_doom">
+            <TouchControls t-if="isTouch" onKey="key">
+                <t t-call="pan_doom.DoomCanvas"/>
+            </TouchControls>
+            <t t-else="" t-call="pan_doom.DoomCanvas"/>
+            <p class="o_pan_doom_help">
+                Click the screen to play. Arrows move, Ctrl fires, Space opens doors,
+                Enter selects, Esc opens the menu.
+            </p>
+            <p class="o_pan_doom_help">
+                Unofficial fan project, not for sale. DOOM is a trademark of id Software.
+            </p>
+        </div>
+    </t>
+
+    <t t-name="pan_doom.DoomCanvas">
+        <canvas t-ref="canvas" class="o_pan_doom_canvas" width="640" height="400" tabindex="0"/>
+    </t>
+</templates>
