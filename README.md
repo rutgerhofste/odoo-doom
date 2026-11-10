@@ -2,7 +2,7 @@
 
 ODooM: an unofficial, non-commercial fan project that runs Doom in Odoo 19. One menu item, the shareware episode, running as WebAssembly in the browser.
 
-![Doom in Odoo](pan_doom/static/description/screenshot.png)
+![Doom in Odoo](pan_doom/static/description/desktop_screenshot.png)
 
 ## Install
 
@@ -14,7 +14,7 @@ anywhere on the left half for a joystick (forward, back, turn). Fire is the big 
 right and also picks menu items; Open is next to it. Menu and ✕ (back to Odoo) are at the top.
 There is no weapon switching on touch; Doom switches when you pick up a new weapon.
 
-![Doom on a phone](pan_doom/static/description/screenshot_mobile.png)
+![Doom on a phone](pan_doom/static/description/mobile_screenshot.png)
 
 ## How it works
 
@@ -33,13 +33,13 @@ endorsed by, id Software, ZeniMax Media, Bethesda Softworks, Microsoft or Odoo S
   to their owners (id Software / ZeniMax Media). DOOM is their trademark and is used here only
   to say what this module runs. Odoo is a trademark of Odoo S.A.
 - **Engine:** the DOOM source code that id Software released under the GNU GPL, version 2 or
-  later. The full license text is in [LICENSE](LICENSE). The WebAssembly build and its source
+  later, distributed here under GPL-3.0. The full license text is in [LICENSE](LICENSE). The WebAssembly build and its source
   come from [diekmann/wasm-fizzbuzz](https://github.com/diekmann/wasm-fizzbuzz/tree/gh-pages/doom),
   taken unchanged from the [wasm-doom](https://www.npmjs.com/package/wasm-doom) npm package (v1.2.0).
 - **Game data:** the unmodified shareware episode (`doom1.wad`, built into the wasm), which id
   Software allows to be passed on for free. It may not be sold or bundled with anything that is.
   The full game is not included.
-- **Our own code** (the Odoo module around the engine) is GPL-2.0 or later as well.
+- **Our own code** (the Odoo module around the engine) is GPL-3.0.
 - **No warranty.** Provided as is, without any warranty, as the GPL says.
 - **Takedown.** If you hold rights to anything in here and want it gone, open an issue and it
   will be taken down.
