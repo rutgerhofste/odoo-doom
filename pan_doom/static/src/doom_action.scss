@@ -17,6 +17,67 @@
 }
 
 .o_pan_doom_help {
-    margin: 8px 0 0;
+    margin: 8px 16px 0;
+    text-align: center;
     font-size: 0.85rem;
+}
+
+// Touch controls only on touch screens; the key help only elsewhere.
+.o_pan_doom_touch {
+    display: none;
+}
+
+@media (pointer: coarse) {
+    .o_pan_doom {
+        justify-content: flex-start;
+    }
+
+    .o_pan_doom_keys {
+        display: none;
+    }
+
+    .o_pan_doom_touch {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        max-width: 640px;
+        padding: 12px 16px;
+        touch-action: none;
+        user-select: none;
+        -webkit-user-select: none;
+    }
+}
+
+.o_pan_doom_pad {
+    display: grid;
+    grid-template-columns: repeat(3, 56px);
+    grid-template-areas: ". u ." "l d r";
+    gap: 6px;
+
+    .o_pan_doom_btn:nth-child(1) { grid-area: u; }
+    .o_pan_doom_btn:nth-child(2) { grid-area: l; }
+    .o_pan_doom_btn:nth-child(3) { grid-area: d; }
+    .o_pan_doom_btn:nth-child(4) { grid-area: r; }
+}
+
+.o_pan_doom_actions {
+    display: grid;
+    grid-template-columns: repeat(2, 72px);
+    gap: 6px;
+}
+
+.o_pan_doom_btn {
+    height: 56px;
+    border: 1px solid #444;
+    border-radius: 8px;
+    background: #1a1a1a;
+    color: #ddd;
+    font-size: 1rem;
+    touch-action: none;
+
+    &.active {
+        background: #9b99ff;
+        color: #001d21;
+    }
 }

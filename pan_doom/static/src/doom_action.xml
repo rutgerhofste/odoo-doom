@@ -3,7 +3,19 @@
     <t t-name="pan_doom.DoomAction">
         <div class="o_pan_doom">
             <canvas t-ref="canvas" class="o_pan_doom_canvas" width="640" height="400" tabindex="0"/>
-            <p class="o_pan_doom_help">
+            <div class="o_pan_doom_touch">
+                <div class="o_pan_doom_pad">
+                    <t t-foreach="constructor.PAD" t-as="b" t-key="b[1]">
+                        <t t-call="pan_doom.DoomButton"/>
+                    </t>
+                </div>
+                <div class="o_pan_doom_actions">
+                    <t t-foreach="constructor.ACTIONS" t-as="b" t-key="b[1]">
+                        <t t-call="pan_doom.DoomButton"/>
+                    </t>
+                </div>
+            </div>
+            <p class="o_pan_doom_help o_pan_doom_keys">
                 Click the screen to play. Arrows move, Ctrl fires, Space opens doors,
                 Enter selects, Esc opens the menu.
             </p>
@@ -11,5 +23,15 @@
                 Unofficial fan project, not for sale. DOOM is a trademark of id Software.
             </p>
         </div>
+    </t>
+
+    <t t-name="pan_doom.DoomButton">
+        <button type="button" class="o_pan_doom_btn" t-att-data-key="b[1]"
+                t-on-pointerdown="(ev) => this.onButton(ev, 0)"
+                t-on-pointerup="(ev) => this.onButton(ev, 1)"
+                t-on-pointercancel="(ev) => this.onButton(ev, 1)"
+                t-on-pointerleave="(ev) => this.onButton(ev, 1)"
+                t-on-contextmenu.prevent="() => {}"
+                t-esc="b[0]"/>
     </t>
 </templates>

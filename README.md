@@ -9,6 +9,10 @@ An unofficial, non-commercial fan project: Doom in Odoo 19. One menu item, the s
 Put `pan_doom/` on your addons path and install the **Doom** app. Open it from the app menu.
 Click the screen, then: arrows move, Ctrl fires, Space opens doors, Enter selects, Esc opens the menu.
 
+On a phone or tablet, on-screen buttons appear under the game: arrows on the left, Fire, Open,
+Enter and Esc on the right. Hold a button to keep walking or firing. There is no weapon switching
+on touch; Doom switches when you pick up a new weapon.
+
 No sound: the engine build has no audio.
 
 ## How it works
