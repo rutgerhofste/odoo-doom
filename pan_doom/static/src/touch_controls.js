@@ -1,4 +1,4 @@
-import { Component, useRef, useState } from "@odoo/owl";
+import { Component, onMounted, onWillUnmount, useRef, useState } from "@odoo/owl";
 
 const UP = 173;
 const DOWN = 175;
@@ -23,9 +23,14 @@ export class TouchControls extends Component {
         this.stickPointer = null;
         this.stickKeys = new Set();
         this.fullscreenTried = false;
+        // iOS starts text selection and its Copy / Look Up menu on a long press;
+        // only a non-passive touchstart that is cancelled stops it.
+        const stopSelect = (ev) => ev.cancelable && ev.preventDefault();
+        onMounted(() => this.layer.el.addEventListener("touchstart", stopSelect, { passive: false }));
+        onWillUnmount(() => this.layer.el.removeEventListener("touchstart", stopSelect));
     }
 
-    // First touch: take the whole screen and turn sideways where the browser lets us.
+    // On the first finger lift (browsers only allow it then): take the whole screen and turn sideways where the browser lets us.
     async goFullscreen() {
         if (this.fullscreenTried) {
             return;
@@ -43,7 +48,7 @@ export class TouchControls extends Component {
         if (this.stickPointer !== null) {
             return;
         }
-        this.goFullscreen();
+        ev.preventDefault();
         this.stickPointer = ev.pointerId;
         ev.currentTarget.setPointerCapture(ev.pointerId);
         Object.assign(this.stick, { active: true, x: ev.clientX, y: ev.clientY, dx: 0, dy: 0 });
@@ -73,6 +78,7 @@ export class TouchControls extends Component {
         if (ev.pointerId !== this.stickPointer) {
             return;
         }
+        this.goFullscreen();
         this.stickPointer = null;
         this.stick.active = false;
         this.setStickKeys(new Set());
@@ -92,7 +98,7 @@ export class TouchControls extends Component {
     press(ev, type, name) {
         ev.preventDefault();
         ev.stopPropagation();
-        if (type === 0) {
+        if (type === 1) {
             this.goFullscreen();
         }
         const keys = { fire: [FIRE, ENTER], use: [USE], menu: [ESC] }[name];
@@ -106,6 +112,6 @@ export class TouchControls extends Component {
         if (document.fullscreenElement) {
             document.exitFullscreen();
         }
-        history.back();
+        window.location.assign("/odoo");
     }
 }
