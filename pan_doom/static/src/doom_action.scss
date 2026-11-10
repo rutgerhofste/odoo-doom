@@ -1,0 +1,22 @@
+.o_pan_doom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background: #000;
+    color: #aaa;
+}
+
+.o_pan_doom_canvas {
+    width: 100%;
+    max-width: calc((100vh - 120px) * 1.6);
+    aspect-ratio: 16 / 10;
+    image-rendering: pixelated;
+    outline: none;
+}
+
+.o_pan_doom_help {
+    margin: 8px 0 0;
+    font-size: 0.85rem;
+}
