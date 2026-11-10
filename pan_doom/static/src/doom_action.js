@@ -1,24 +1,11 @@
 import { Component, onMounted, onWillUnmount, useRef } from "@odoo/owl";
 import { registry } from "@web/core/registry";
 import { standardActionServiceProps } from "@web/webclient/actions/action_service";
+import { TouchControls } from "./touch_controls";
 
 const WASM_URL = "/pan_doom/static/lib/doom/doom.wasm";
 const WIDTH = 640;
 const HEIGHT = 400;
-
-// On-screen buttons for touch screens: [label, Doom key code].
-const PAD = [
-    ["▲", 173],
-    ["◀", 172],
-    ["▼", 175],
-    ["▶", 174],
-];
-const ACTIONS = [
-    ["Fire", 157],
-    ["Open", 32],
-    ["Enter", 13],
-    ["Esc", 27],
-];
 
 // Browser keyCode -> Doom key code (doomkeys.h).
 function doomKey(code) {
@@ -39,13 +26,14 @@ function doomKey(code) {
 export class DoomAction extends Component {
     static template = "pan_doom.DoomAction";
     static props = { ...standardActionServiceProps };
-    static PAD = PAD;
-    static ACTIONS = ACTIONS;
+    static components = { TouchControls };
 
     setup() {
         this.canvasRef = useRef("canvas");
         this.frame = null;
         this.send = () => {}; // until the game has loaded
+        this.isTouch = window.matchMedia("(pointer: coarse)").matches;
+        this.key = (type, key) => this.send(type, key);
         onMounted(() => this.start());
         onWillUnmount(() => cancelAnimationFrame(this.frame));
     }
@@ -90,20 +78,6 @@ export class DoomAction extends Component {
             this.frame = requestAnimationFrame(step);
         };
         this.frame = requestAnimationFrame(step);
-    }
-
-    // A touch button is held while the finger is on it.
-    onButton(ev, type) {
-        ev.preventDefault();
-        const button = ev.currentTarget;
-        const held = button.classList.contains("active");
-        if (type === 0 && !held) {
-            button.classList.add("active");
-            this.send(0, Number(button.dataset.key));
-        } else if (type === 1 && held) {
-            button.classList.remove("active");
-            this.send(1, Number(button.dataset.key));
-        }
     }
 }
 

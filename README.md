@@ -9,11 +9,12 @@ An unofficial, non-commercial fan project: Doom in Odoo 19. One menu item, the s
 Put `pan_doom/` on your addons path and install the **Doom** app. Open it from the app menu.
 Click the screen, then: arrows move, Ctrl fires, Space opens doors, Enter selects, Esc opens the menu.
 
-On a phone or tablet, on-screen buttons appear under the game: arrows on the left, Fire, Open,
-Enter and Esc on the right. Hold a button to keep walking or firing. There is no weapon switching
-on touch; Doom switches when you pick up a new weapon.
+On a phone or tablet the game takes the whole screen, like a mobile game. Put your left thumb
+anywhere on the left half for a joystick (forward, back, turn). Fire is the big button on the
+right and also picks menu items; Open is next to it. Menu and ✕ (back to Odoo) are at the top.
+There is no weapon switching on touch; Doom switches when you pick up a new weapon.
 
-No sound: the engine build has no audio.
+![Doom on a phone](pan_doom/static/description/screenshot_mobile.png)
 
 ## How it works
 

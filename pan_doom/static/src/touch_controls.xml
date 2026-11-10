@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="pan_doom.TouchControls">
+        <div class="o_pan_doom_touch" t-ref="layer" t-on-contextmenu.prevent="() => {}">
+            <t t-slot="default"/>
+            <div class="o_pan_doom_stick_zone"
+                 t-on-pointerdown="stickStart"
+                 t-on-pointermove="stickMove"
+                 t-on-pointerup="stickEnd"
+                 t-on-pointercancel="stickEnd">
+                <div t-if="stick.active" class="o_pan_doom_stick"
+                     t-attf-style="left: {{ stick.x }}px; top: {{ stick.y }}px;">
+                    <div class="o_pan_doom_knob"
+                         t-attf-style="transform: translate({{ stick.dx }}px, {{ stick.dy }}px);"/>
+                </div>
+                <div t-else="" class="o_pan_doom_stick o_pan_doom_stick_rest">
+                    <div class="o_pan_doom_knob"/>
+                </div>
+            </div>
+            <t t-foreach="['fire', 'use', 'menu']" t-as="name" t-key="name">
+                <button type="button" t-attf-class="o_pan_doom_btn o_pan_doom_{{ name }}"
+                        t-on-pointerdown="(ev) => this.press(ev, 0, name)"
+                        t-on-pointerup="(ev) => this.press(ev, 1, name)"
+                        t-on-pointercancel="(ev) => this.press(ev, 1, name)"
+                        t-esc="{ fire: 'Fire', use: 'Open', menu: 'Menu' }[name]"/>
+            </t>
+            <button type="button" class="o_pan_doom_close" aria-label="Back to Odoo"
+                    t-on-click="close">✕</button>
+            <p class="o_pan_doom_notice">Unofficial fan project, not for sale. DOOM is a trademark of id Software.</p>
+        </div>
+    </t>
+</templates>
