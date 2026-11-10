@@ -3,7 +3,7 @@
     "summary": "Play the DOOM shareware episode inside Odoo, on desktop and mobile. Unofficial fan project.",
     "description": "Unofficial, non-commercial fan project. The shareware episode of DOOM, running as "
     "WebAssembly in an Odoo menu. DOOM is a trademark of id Software; no rights claimed.",
-    "version": "19.0.1.1.1",
+    "version": "19.0.1.1.2",
     "category": "Extra Tools",
     "author": "Pantalytics B.V.",
     "website": "https://github.com/rutgerhofste/odoo-doom",
