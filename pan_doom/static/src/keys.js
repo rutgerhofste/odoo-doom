@@ -40,6 +40,8 @@ const BY_CODE = {
     189: 45, // -
     190: 46, // .
     191: 47, // /
+    107: 61, // numpad +: bigger screen, automap zoom in
+    109: 45, // numpad -: smaller screen, automap zoom out
     192: 96, // `
     219: 91, // [
     220: 92, // \

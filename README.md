@@ -20,7 +20,8 @@ joystick (forward, back, turn). Fire is the big button on the right; it also pic
 answers yes. Open sits above it. Menu and ✕ (back to Odoo's home screen) are at the top. Turn the
 phone sideways for a bigger picture: on Android the game then goes full screen after your first
 touch, on iPhone Safari's own bars stay. There is no weapon switching on touch; Doom switches when
-you pick up a new weapon.
+you pick up a new weapon. Because Fire also answers yes, a game saved on touch gets a "Y" at the
+end of its name.
 
 There is no sound.
 
