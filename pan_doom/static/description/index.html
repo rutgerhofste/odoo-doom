@@ -1,6 +1,6 @@
 <section class="oe_container" style="background-color: #001d21; color: #ffffff; padding: 48px 24px; border-radius: 12px;">
     <div class="oe_row" style="max-width: 960px; margin: 0 auto; text-align: center;">
-        <img src="icon.png" alt="ODooM" style="width: 112px; height: 112px;"/>
+        <img src="icon.png" alt="" style="width: 112px; height: 112px;"/>
         <h1 style="font-size: 48px; font-weight: 500; margin: 24px 0 8px; color: #ffffff;">ODooM</h1>
         <p style="font-size: 20px; margin: 0; color: #ffffff;">Doom, inside Odoo 19. On your desktop and on your phone.</p>
         <p style="font-size: 14px; margin: 16px 0 0; color: #9b99ff;">Free, unofficial fan project</p>
@@ -13,7 +13,7 @@
         <p>
             Install ODooM and a new app appears in your Odoo menu. Open it and the shareware episode
             of Doom starts right there, inside the Odoo window. The game runs in your browser as
-            WebAssembly, so the module adds no Python code, no models and no data to your database.
+            WebAssembly, so the module adds no models and no business data: just one menu item and its action.
         </p>
         <img src="desktop_screenshot.png" alt="ODooM in Odoo on a laptop" style="width: 100%; border-radius: 8px; border: 1px solid #dee2e6; margin-top: 16px;"/>
     </div>
@@ -25,19 +25,22 @@
         <h3 style="font-weight: 500; font-size: 18px; margin-top: 16px;">On a computer</h3>
         <p>
             Click the game, then use the arrow keys to move, Ctrl to fire, Space to open doors,
-            Enter to select and Esc for the menu. Keys stay inside the game, so Odoo's own
-            shortcuts do not get in the way.
+            Enter to select, Y to answer yes and Esc for the menu. Shift runs and 1 to 7 pick a
+            weapon. Keys stay inside the game, so Odoo's own shortcuts do not get in the way;
+            Shift+Tab gives the keyboard back to Odoo.
         </p>
         <h3 style="font-weight: 500; font-size: 18px; margin-top: 16px;">On a phone or tablet</h3>
         <p>
-            The game takes the whole screen. Put your left thumb anywhere on the left half for a
-            joystick, use the big Fire button on the right, and Open next to it. Menu and the button
-            back to Odoo sit at the top.
+            The game covers Odoo's screen. Put your left thumb on the lower left for a joystick and
+            use the big Fire button on the right, which also picks menu items and answers yes. Open
+            sits above it, and Menu and the button back to Odoo are at the top. Turn the phone
+            sideways for a bigger picture: on Android the game then goes full screen, on iPhone
+            Safari's own bars stay.
         </p>
         <img src="mobile_screenshot.png" alt="ODooM on a phone, held sideways" style="width: 100%; border-radius: 8px; border: 1px solid #dee2e6; margin-top: 16px;"/>
         <p style="margin-top: 16px; color: #5f6b6d; font-size: 14px;">
-            There is no sound, and no weapon switching on touch screens: Doom picks up a new weapon
-            for you when you walk over it.
+            There is no sound, and no weapon switching on touch screens: Doom switches to a new
+            weapon when you pick it up.
         </p>
     </div>
 </section>
@@ -52,10 +55,10 @@
         </p>
         <ul>
             <li>DOOM and every name, image, sound and level from the game belong to id Software / ZeniMax Media. DOOM is their trademark and is used here only to say what this module runs. No rights are claimed.</li>
-            <li>The engine is the DOOM source code id Software released under the GNU GPL. The WebAssembly build and its source come from the wasm-fizzbuzz project by Cornelius Diekmann on GitHub.</li>
+            <li>The engine is the DOOM source code id Software released under the GNU GPL, version 2 or later, distributed here under GPL-3.0. The WebAssembly build and its source come from <a href="https://github.com/diekmann/wasm-fizzbuzz/tree/gh-pages/doom">the wasm-fizzbuzz project by Cornelius Diekmann</a>, taken unchanged from the wasm-doom 1.2.0 npm package.</li>
             <li>The game data is the unmodified shareware episode, which may be passed on for free and never sold. The full game is not included.</li>
             <li>The module is licensed under GPL-3.0 and comes without any warranty.</li>
-            <li>If you hold rights to anything in it and want it removed, open an issue on the GitHub repository and it will be taken down.</li>
+            <li>If you hold rights to anything in it and want it removed, open an issue on <a href="https://github.com/rutgerhofste/odoo-doom">the GitHub repository</a> and it will be taken down.</li>
         </ul>
     </div>
 </section>
