@@ -25,7 +25,7 @@
                         t-esc="{ fire: 'Fire', use: 'Open', menu: 'Menu' }[name]"/>
             </t>
             <button type="button" class="o_pan_doom_close" aria-label="Back to Odoo"
-                    t-on-click="close">✕</button>
+                    t-on-pointerup="close">✕</button>
             <p class="o_pan_doom_notice">Unofficial fan project, not for sale. DOOM is a trademark of id Software.</p>
         </div>
     </t>
