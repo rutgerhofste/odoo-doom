@@ -1,12 +1,12 @@
-# odoo-doom
+# ODooM
 
-An unofficial, non-commercial fan project: Doom in Odoo 19. One menu item, the shareware episode, running as WebAssembly in the browser.
+ODooM: an unofficial, non-commercial fan project that runs Doom in Odoo 19. One menu item, the shareware episode, running as WebAssembly in the browser.
 
 ![Doom in Odoo](pan_doom/static/description/screenshot.png)
 
 ## Install
 
-Put `pan_doom/` on your addons path and install the **Doom** app. Open it from the app menu.
+Put `pan_doom/` on your addons path and install the **ODooM** app. Open it from the app menu.
 Click the screen, then: arrows move, Ctrl fires, Space opens doors, Enter selects, Esc opens the menu.
 
 On a phone or tablet the game takes the whole screen, like a mobile game. Put your left thumb

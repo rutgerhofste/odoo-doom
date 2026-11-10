@@ -1,5 +1,5 @@
 {
-    "name": "Doom",
+    "name": "ODooM",
     "summary": "Unofficial fan project: play DOOM shareware inside Odoo",
     "description": "Unofficial, non-commercial fan project. The shareware episode of DOOM, running as "
         "WebAssembly in an Odoo menu. DOOM is a trademark of id Software; no rights claimed.",
