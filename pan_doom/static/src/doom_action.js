@@ -50,8 +50,10 @@ export class DoomAction extends Component {
 
     async start() {
         Object.assign(this.state, { status: "loading", message: "Loading the game…" });
-        this.abort = new AbortController();
+        const abort = new AbortController();
+        this.abort = abort;
         let lastError = "";
+        let stderr = ""; // Doom prints one line in several pieces
         try {
             if (typeof WebAssembly !== "object") {
                 throw new GameError("This browser has WebAssembly turned off, so the game cannot run here.");
@@ -67,14 +69,19 @@ export class DoomAction extends Component {
                 js: {
                     js_console_log: (ptr, len) => console.debug("[doom]", text(ptr, len)),
                     js_stdout: (ptr, len) => console.debug("[doom]", text(ptr, len)),
-                    // Doom writes its start-up lines to stderr too; only I_Error says "error".
+                    // Doom writes its start-up lines to stderr too; only I_Error starts with "Error".
                     js_stderr: (ptr, len) => {
-                        const line = text(ptr, len).trim();
-                        if (/error/i.test(line)) {
-                            lastError = line;
-                            console.error("[doom]", line);
-                        } else {
-                            console.debug("[doom]", line);
+                        stderr += text(ptr, len);
+                        let end;
+                        while ((end = stderr.indexOf("\n")) >= 0) {
+                            const line = stderr.slice(0, end).trim();
+                            stderr = stderr.slice(end + 1);
+                            if (/^error/i.test(line)) {
+                                lastError = line;
+                                console.error("[doom]", line);
+                            } else if (line) {
+                                console.debug("[doom]", line);
+                            }
                         }
                     },
                     js_milliseconds_since_start: () => performance.now(),
@@ -88,9 +95,9 @@ export class DoomAction extends Component {
             };
             let response;
             try {
-                response = await fetch(WASM_URL, { signal: this.abort.signal });
+                response = await fetch(WASM_URL, { signal: abort.signal });
             } catch (err) {
-                if (err.name === "AbortError") throw err;
+                if (abort.signal.aborted) throw err;
                 throw new GameError(`The game could not be downloaded: ${err.message}. Check your connection and try again.`);
             }
             if (!response.ok) {
@@ -113,6 +120,9 @@ export class DoomAction extends Component {
                     doom_loop_step();
                 } catch (err) {
                     // Quit Game ends the engine with a trap too; only a crash leaves a message.
+                    if (/^error/i.test(stderr.trim())) {
+                        lastError = stderr.trim(); // the last line had no newline yet
+                    }
                     if (lastError) {
                         console.error("ODooM:", err);
                     }
@@ -123,7 +133,7 @@ export class DoomAction extends Component {
             };
             this.frame = requestAnimationFrame(step);
         } catch (err) {
-            if (err.name === "AbortError") {
+            if (abort.signal.aborted) {
                 return; // left the screen while loading
             }
             const message = err instanceof GameError ? err.message : `The game could not start: ${err.message}`;
@@ -151,20 +161,28 @@ export class DoomAction extends Component {
 
     onKey(ev, type) {
         const key = doomKey(ev.keyCode);
-        // The browser keeps keys the game has no use for, Cmd shortcuts, and
-        // Shift+Tab, the keyboard way out of the game.
-        if (key === null || ev.metaKey || (ev.key === "Tab" && ev.shiftKey)) {
+        if (key === null) {
+            return; // the browser keeps keys the game has no use for
+        }
+        if (type === 1) {
+            // Always release what went down, whatever else is held now (Cmd on a Mac).
+            if (this.held.delete(key)) {
+                ev.preventDefault();
+                ev.stopPropagation();
+                this.send(1, key);
+            }
+            return;
+        }
+        // Not while the end screen shows, nor Cmd shortcuts, nor Shift+Tab: the
+        // keyboard way out of the game and to its Play again button.
+        if (this.state.status !== "playing" || ev.metaKey || (ev.key === "Tab" && ev.shiftKey)) {
             return;
         }
         // Keys stay on the canvas, so Odoo's own shortcuts never see them.
         ev.preventDefault();
         ev.stopPropagation();
-        if (type === 0) {
-            this.held.add(key);
-        } else {
-            this.held.delete(key);
-        }
-        this.send(type, key);
+        this.held.add(key);
+        this.send(0, key);
     }
 }
 

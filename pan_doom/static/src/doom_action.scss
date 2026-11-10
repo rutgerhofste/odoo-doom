@@ -35,6 +35,7 @@
 .o_pan_doom_overlay {
     position: absolute;
     inset: 0;
+    z-index: 1; // above the touch joystick zone, so Play again takes the whole tap
     display: flex;
     flex-direction: column;
     align-items: center;
